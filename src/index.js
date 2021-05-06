@@ -13,11 +13,17 @@ const resolvers = {
     info: () => null,
     feed: () => links,
 },
-  Link: {
-      id: (parent) => parent.id,
-      description: (parent) => parent.description,
-      url: (parent) => parent.url,
-  }
+Mutation: {
+    post: (parent, args) => {
+        const link = {
+            id: `link-${idCount++}`,
+            description: args.description,
+            url: args.url,
+        }
+        links.push(link)
+        return link
+    }
+  },
 }
 
 // Start Server
