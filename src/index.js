@@ -1,4 +1,6 @@
 const { ApolloServer } = require('apollo-server');
+const fs = require('fs');
+const path = require('path');
 
 let links = [{
   id: 'link-0',
@@ -6,8 +8,8 @@ let links = [{
   description: 'Fullstack tutorial for GraphQL'
 }]
 
-
 // Resolvers
+let idCount = links.length
 const resolvers = {
   Query: {
     info: () => null,
