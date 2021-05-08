@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 
 // Resolvers
-let idCount = links.length
+// let idCount = links.length
 const resolvers = {
   Query: {
     info: () => null,
@@ -16,7 +16,7 @@ const resolvers = {
 },
 Mutation: {
     post: (parent, args, context, info) => {
-        const newLink = context.prisma.link.creat({
+        const newLink = context.prisma.link.create({
             data: {
                 url: args.url,
                 description: args.description,
