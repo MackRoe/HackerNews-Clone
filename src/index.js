@@ -8,30 +8,16 @@ const Query = require('./resolvers/Query');
 const Mutation = require('./resolvers/Mutation');
 const User = require('./resolvers/User');
 const Link = require('./resolvers/Link');
+const Subscription = require('./resolvers/Subscription');
+const { PubSub } = require('apollo-server')
 
+const pubsub = new PubSub()
 
 // Resolvers
 const resolvers = {
-  // Query: {
-  //   info: () => `This is the API of a Hackernews Clone`,
-  //   feed: async (parent, args, context) => {
-  //       return context.prisma.link.findMany()
-  //   },
-  // },
-  //   Mutation: {
-  //       post: (parent, args, context, info) => {
-  //           const newLink = context.prisma.link.create({
-  //               data: {
-  //                   url: args.url,
-  //                   description: args.description,
-  //               },
-  //           })
-  //
-  //       return newLink
-  //   },
-  // },
   Query,
   Mutation,
+  Subscription,
   User,
   Link
 }
@@ -47,6 +33,7 @@ const server = new ApolloServer({
     return {
         ...req,
         prisma,
+        pubsub,
         userId:
           req && req.headers.authorization
             ? getUserId(req)
