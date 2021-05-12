@@ -6,14 +6,19 @@ const prisma = new PrismaClient()
 
 // Send queries to db
 async function main() {
-  const newLink = await prisma.link.create({
-      data: {
-          description: 'Fullstack tutorial for GraphQL',
-          url: 'www.howtographql.com',
-      },
-  })
-  const allLinks = await prisma.link.findMany()
-  console.log(allLinks)
+    try {
+        const newLink = await prisma.link.create({
+            data: {
+                description: 'Fullstack tutorial for GraphQL',
+                url: 'www.howtographql.com',
+            },
+        })
+        const allLinks = await prisma.link.findMany()
+        console.log(allLinks)
+    } catch(err){
+        console.log(err.message)
+    }
+
 }
 
 // Catch errors and close db when script terminates

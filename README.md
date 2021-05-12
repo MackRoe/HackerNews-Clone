@@ -8,3 +8,4 @@ GraphQL <br>
 Node Express<br>
 Prisma<br>
 SQLite
+bcryptjs
